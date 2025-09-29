@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { FaGlobe } from 'react-icons/fa6';
@@ -49,10 +48,15 @@ export default async function JdkDetailsPage({ params }: Readonly<Props>) {
             </CardHeader>
 
             <CardContent className="flex flex-col text-sm">
-              <Link className="flex items-center gap-2" href={JDK.url}>
+              <a
+                className="flex items-center gap-2"
+                href={JDK.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaGlobe className="size-4" />
                 Website
-              </Link>
+              </a>
 
               <Separator className="my-3" />
 
