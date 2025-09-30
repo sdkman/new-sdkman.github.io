@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 import jdks from '@/data/jdks';
-import { jdksService } from '@/lib/services/jdks';
+import jdksService from '@/lib/services/jdks';
 
 type Props = {
   params: Promise<{ id?: string }>;
