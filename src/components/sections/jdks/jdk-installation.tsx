@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { jdksService } from '@/lib/services/jdks';
+import jdksService from '@/lib/services/jdks';
 
 type JdkInstallationProps = {
   id: string;

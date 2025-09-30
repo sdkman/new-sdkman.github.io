@@ -32,7 +32,9 @@ function generateParams() {
   }, []);
 }
 
-export const jdksService = {
+const jdksService = {
   getVersions,
   generateParams,
 };
+
+export default jdksService;
