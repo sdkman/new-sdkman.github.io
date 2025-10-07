@@ -29,7 +29,7 @@ export default async function SdkDetailsPage({ params }: Readonly<Props>) {
 
       <PageHeader title={SDK.title} breadcrumbs={breadcrumbs} />
 
-      <Container>
+      <Container className="pb-20">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_250px]">
           <div className="flex flex-col gap-6">
             <p>{SDK.description}</p>
