@@ -2,6 +2,7 @@ import {
   FaBluesky,
   FaDiscord,
   FaGithub,
+  FaMastodon,
   FaStackOverflow,
   FaXTwitter,
 } from 'react-icons/fa6';
@@ -21,6 +22,11 @@ const socialLinks = [
     icon: FaBluesky,
     name: 'Bluesky',
     url: 'https://bsky.app/profile/sdkman.io',
+  },
+  {
+    icon: FaMastodon,
+    name: 'Mastodon',
+    url: 'https://mastodon.social/@sdkman@fosstodon.org',
   },
   {
     icon: FaXTwitter,
