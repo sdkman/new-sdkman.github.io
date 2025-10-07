@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import * as React from 'react';
 
 import Image from 'next/image';
@@ -11,6 +9,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Code } from '@/components/ui/code';
 import { slugify } from '@/lib/utils';
+import { MDXRemoteProps } from 'next-mdx-remote/rsc';
 
 // function Table({ data }) {
 //   const headers = data.headers.map((header, index) => (
@@ -34,31 +33,35 @@ import { slugify } from '@/lib/utils';
 //   );
 // }
 
-function CustomLink(props) {
-  const href = props.href;
+interface CustomLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+  children?: React.ReactNode;
+}
 
+function CustomLink({ href, children, ...rest }: CustomLinkProps) {
   if (href.startsWith('/')) {
     return (
-      <Link href={href} {...props}>
-        {props.children}
+      <Link href={href} {...rest}>
+        {children}
       </Link>
     );
   }
 
   if (href.startsWith('#')) {
-    return <a {...props} />;
+    return <a href={href} {...rest}>{children}</a>;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>{children}</a>;
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage({alt, ...rest}: React.ComponentProps<typeof Image>) {
+  return <Image alt={alt} {...rest} className="rounded-lg" />;
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
+  const Heading = ({ children }: { children: string }) => {
     const slug = slugify(children);
+
     return React.createElement(
       `h${level}`,
       { id: slug, className: 'scroll-mt-20' },
@@ -78,7 +81,7 @@ function createHeading(level) {
   return Heading;
 }
 
-const components = {
+const customComponents = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -92,15 +95,14 @@ const components = {
   Alert,
   AlertDescription,
   AlertTitle,
-  // Icons
   AlertCircleIcon,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX({components, ...rest}: MDXRemoteProps) {
   return (
     <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      {...rest}
+      components={{ ...customComponents, ...(components || {}) }}
     />
   );
 }
