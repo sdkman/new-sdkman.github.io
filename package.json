@@ -28,7 +28,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "sugar-high": "^0.9.4",
+    "sugar-high": "^0.9.5",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
